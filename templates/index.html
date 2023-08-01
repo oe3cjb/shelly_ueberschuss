@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <link rel="stylesheet" href='/static/style.css' />
+    <META HTTP-EQUIV="refresh" CONTENT="60">
+  </head>
+  <body>
+    <h1> Surplus Solar Power - Shelly Switch V1.0</h1>
+    by OE3CJB<br>
+    <h3> Current State </h3>
+    <b>{{ state_string }}</b><br>
+    <h3> Current Values </h3>
+    {% if switch_mode1 == "SWITCH OFF" %}
+      Switch Mode  =<b><span style="color:darkorange"> {{ switch_mode1 }}</span></b><br>
+    {% endif %}
+    {% if switch_mode1 == "SWITCH SURPLUS" %}
+      Switch Mode  =<b><span style="color:yellowgreen"> {{ switch_mode1 }}</span></b><br>
+    {% endif %}
+    {% if switch_mode1 == "SWITCH ON" %}
+      Switch Mode  =<b><span style="color:red"> {{ switch_mode1 }}</span></b><br>
+    {% endif %}
+
+    <h3> Set Switch Mode <h3/>
+    <form method="post" action="/">
+      Power Consumption: <input type="number" value="1000" name="power_consumption" min="100" max="2300" maxlength="4" size="4"/>
+      <input type="submit" value="AUTO" name="auto"/>
+      <input type="submit" value="ON" name="fixed" />
+      <input type="submit" value="OFF" name="stop" />
+    </form>
+  </body>
+</html>

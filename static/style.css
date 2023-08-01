@@ -1,0 +1,17 @@
+body {
+    # background: lightgreen;
+    color: white;
+    background-image: url("/static/sonne.jpg");
+}
+
+h1 {
+  color: yellow;
+}
+
+h2 {
+  color: blue;
+}
+
+h3 {
+  color: orange;
+}
