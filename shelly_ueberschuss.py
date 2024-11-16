@@ -6,9 +6,12 @@ from decimal import Decimal
 from flask import Flask, render_template, request
 
 # Variable declaration
-power_consumption_form = 1000
-power_consumption = 1000
-charge_pwr_keep = 100
+device = 'tasmota' #set to 'shelly' if want to use Shelly devices
+
+
+power_consumption_form = 450
+power_consumption = 4500
+charge_pwr_keep = 50
 state_string = 'empty state_string'
 load_pwr_avg = 0
 grid_pwr_avg = 0
@@ -25,7 +28,11 @@ switch_mode1 = "SWITCH OFF"
 # 0 = Stop, 1 = Auto, 2 = Fixed
 
 url_pv     = 'http://192.168.29.211/solar_api/v1/GetPowerFlowRealtimeData.fcgi'
-url_shelly = 'http://192.168.29.223/relay/0' # get Switch state
+if device == 'shelly':
+   url_shelly = 'http://192.168.29.223/relay/0'           # get switch state Shelly
+else:
+   url_shelly = 'http://192.168.29.214/cm?cmnd=Power%20' # get switch state Tasmota
+
 
 def get_pv_data():
 	global state_string
@@ -64,7 +71,10 @@ def set_switch(sw):
 		error = True
 		while (error):
 			try:
-				requests.post(url_shelly+"?turn=on")
+		      if device == 'shelly':
+				   requests.post(url_shelly+"?turn=on")
+            else:
+				   requests.post(url_shelly+"On")
 			except:
 				now = datetime.datetime.now()
 				state_string = now.strftime("%m/%d/%Y, %H:%M:%S") + " Shelly IP Error"
@@ -76,7 +86,10 @@ def set_switch(sw):
 		error = True
 		while (error):
 			try:
-				requests.post(url_shelly+"?turn=off")
+		      if device == 'shelly':
+				   requests.post(url_shelly+"?turn=off")
+            else:
+				   requests.post(url_shelly+"Off")
 			except:
 				now = datetime.datetime.now()
 				state_string = now.strftime("%m/%d/%Y, %H:%M:%S") + " Shelly IP Error"
