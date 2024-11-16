@@ -71,10 +71,10 @@ def set_switch(sw):
 		error = True
 		while (error):
 			try:
-		      if device == 'shelly':
-				   requests.post(url_shelly+"?turn=on")
-            else:
-				   requests.post(url_shelly+"On")
+				if device == 'shelly':
+					requests.post(url_shelly+"?turn=on")
+				else:
+					requests.post(url_shelly+"On")
 			except:
 				now = datetime.datetime.now()
 				state_string = now.strftime("%m/%d/%Y, %H:%M:%S") + " Shelly IP Error"
@@ -86,10 +86,10 @@ def set_switch(sw):
 		error = True
 		while (error):
 			try:
-		      if device == 'shelly':
-				   requests.post(url_shelly+"?turn=off")
-            else:
-				   requests.post(url_shelly+"Off")
+				if device == 'shelly':
+					requests.post(url_shelly+"?turn=off")
+				else:
+					requests.post(url_shelly+"Off")
 			except:
 				now = datetime.datetime.now()
 				state_string = now.strftime("%m/%d/%Y, %H:%M:%S") + " Shelly IP Error"
