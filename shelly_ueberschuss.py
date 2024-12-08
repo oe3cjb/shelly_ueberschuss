@@ -9,7 +9,7 @@ from flask import Flask, render_template, request
 device = 'tasmota' #set to 'shelly' if want to use Shelly devices
 
 
-power_consumption_form = 450
+power_consumption_form = 300
 power_consumption = 4500
 charge_pwr_keep = 50
 state_string = 'empty state_string'
@@ -20,11 +20,11 @@ pv_pwr_avg = 0
 switch_onoff = 0
 battery_soc = 0
 battery_power_min = 4000
-battery_soc_min = 60
-battery_soc_full_load = 80
+battery_soc_min = 40
+battery_soc_full_load = 60
 secsavg = 15
-switch_mode = 0
-switch_mode1 = "SWITCH OFF"
+switch_mode = 1
+switch_mode1 = "SWITCH SURPLUS"
 # 0 = Stop, 1 = Auto, 2 = Fixed
 
 url_pv     = 'http://192.168.29.211/solar_api/v1/GetPowerFlowRealtimeData.fcgi'
